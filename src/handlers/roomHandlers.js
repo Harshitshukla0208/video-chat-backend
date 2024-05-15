@@ -20,6 +20,11 @@ const roomHandler = (socket) => {
             rooms[roomId].push(peerId);
             socket.join(roomId) //makes the user join the socket room
 
+            //when someone joins the room the frontend gona emit this ready event
+            socket.on("ready", () => {
+                socket.to(roomId).emit("user-joined", {peerId});
+            })
+
             //to check the participants
             socket.emit("get-users", {
                 roomId: roomId,
