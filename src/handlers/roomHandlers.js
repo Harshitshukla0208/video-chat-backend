@@ -1,10 +1,10 @@
-const { v4: UUIDv4 } = require("uuid");
+// const { v4: UUIDv4 } = require("uuid");
 //a temporary memory db
 const rooms = {};
 
 const roomHandler = (socket) => {
-    const createRoom = () => {
-        const roomId = UUIDv4();
+    const createRoom = ({roomId}) => {
+        // const roomId = UUIDv4();
         socket.join(roomId);
 
         rooms[roomId] = []; //create a new entry for the room
